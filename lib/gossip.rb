@@ -3,6 +3,7 @@ require 'csv'
 class Gossip
   attr_accessor :author, :content
 
+  #intialise avec 2 variables.
   def initialize(author, content)
     @author = author
     @content = content
@@ -12,6 +13,15 @@ class Gossip
     CSV.open("./db/gossip.csv", "ab") do |csv|
       csv << [@author, @content]
     end
+  end
+
+  # return an array with all the gossips
+  def self.all
+    all_gossips = []
+    CSV.read('./db/gossip.csv').each do |csv_line|
+      all_gossips << Gossip.new(csv_line[0], csv_line[1])
+    end
+    return all_gossips
   end
 
 end
