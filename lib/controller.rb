@@ -1,3 +1,5 @@
+require 'gossip'
+
 class ApplicationController < Sinatra::Base
   
   get '/' do
@@ -8,8 +10,9 @@ class ApplicationController < Sinatra::Base
     erb :new_gossip
   end
 
-  post 'gossips/new/' do
+  post '/gossips/new/' do
     puts "Ce programme ne fait rien pour le moment, on va donc afficher un message dans le terminal"
+    Gossip.new.save
   end
 
 
